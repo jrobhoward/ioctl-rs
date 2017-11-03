@@ -73,7 +73,7 @@ pub fn tiocmbic(fd: RawFd, bits: c_int) -> io::Result<()> {
 
 /// Get audit queue length
 pub fn ap_get_qlimit_max(fd: RawFd, bits: &mut c_int) -> io::Result<()> {
-    match unsafe { ioctl(fd, AUDITPIPE_GET_QLIMIT_MAX, *bits) } {
+    match unsafe { ioctl(fd, AUDITPIPE_GET_QLIMIT_MAX, bits as *mut i32) } {
         0 => Ok(()),
         _ => Err(io::Error::last_os_error())
     }
