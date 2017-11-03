@@ -29,6 +29,10 @@ AC_CHECK_HEADERS([net/if.h], [], [],
 AC_CHECK_HEADERS([termios.h])
 AC_CHECK_HEADERS([unistd.h])
 AC_CHECK_HEADERS([IOKit/serial/ioss.h])
+AC_CHECK_HEADERS([security/audit/audit_ioctl.h], [], [],
+[#include <sys/ioctl.h>
+#include <bsm/audit.h>
+])
 
 AC_CONFIG_FILES([Makefile])
 AC_OUTPUT

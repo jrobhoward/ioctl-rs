@@ -29,6 +29,11 @@
 # include <IOKit/serial/ioss.h>
 #endif
 
+#ifdef HAVE_SECURITY_AUDIT_AUDIT_IOCTL_H
+# include <bsm/audit.h>
+# include <security/audit/audit_ioctl.h>
+#endif
+
 
 template <typename T>
 std::string type_name(T);
@@ -424,6 +429,14 @@ int main()
     constant(TIOCM_DSR);
 #endif
 #endif // HAVE_TERMIOS_H
+
+#ifdef HAVE_SECURITY_AUDIT_AUDIT_IOCTL_H
+    header("auditpipe interface");
+#ifdef AUDITPIPE_GET_QLIMIT_MAX
+    constant(AUDITPIPE_GET_QLIMIT_MAX);
+#endif
+#endif // HAVE_SECURITY_AUDIT_AUDIT_IOCTL_H
+
 
     return EXIT_SUCCESS;
 }
