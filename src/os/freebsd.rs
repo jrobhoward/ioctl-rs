@@ -67,50 +67,54 @@ pub const TIOCM_RNG: c_int = 0x00000080;
 pub const TIOCM_RI: c_int = 0x00000080;
 pub const TIOCM_DSR: c_int = 0x00000100;
 
-// auditpipe, /usr/include/security/audit/audit_ioctl.h
-pub const AUDITPIPE_DELETE_PRESELECT_AUID: c_ulong = 0x8004410c;
-pub const AUDITPIPE_FLUSH: c_ulong = 0x20004110;
-pub const AUDITPIPE_FLUSH_PRESELECT_AUID: c_ulong = 0x2000410d;
-pub const AUDITPIPE_GET_DROPS: c_ulong = 0x40084166;
-pub const AUDITPIPE_GET_INSERTS: c_ulong = 0x40084164;
-pub const AUDITPIPE_GET_MAXAUDITDATA: c_ulong = 0x40044111;
-pub const AUDITPIPE_GET_PRESELECT_AUID: c_ulong = 0x400c410a;
-pub const AUDITPIPE_GET_PRESELECT_FLAGS: c_ulong = 0x40084106;
-pub const AUDITPIPE_GET_PRESELECT_MODE: c_ulong = 0x4004410e;
-pub const AUDITPIPE_GET_PRESELECT_NAFLAGS: c_ulong = 0x40084108;
+// auditpipe interface
+
+pub const AUDITPIPE_PRESELECT_MODE_TRAIL: c_int = 0x00000001;
+pub const AUDITPIPE_PRESELECT_MODE_LOCAL: c_int = 0x00000002;
 pub const AUDITPIPE_GET_QLEN: c_ulong = 0x40044101;
 pub const AUDITPIPE_GET_QLIMIT: c_ulong = 0x40044102;
-pub const AUDITPIPE_GET_QLIMIT_MAX: c_ulong = 0x40044105;
-pub const AUDITPIPE_GET_QLIMIT_MIN: c_ulong = 0x40044104;
-pub const AUDITPIPE_GET_READS: c_ulong = 0x40084165;
-pub const AUDITPIPE_GET_TRUNCATES: c_ulong = 0x40084167;
-pub const AUDITPIPE_SET_PRESELECT_AUID: c_ulong = 0x800c410b;
-pub const AUDITPIPE_SET_PRESELECT_FLAGS: c_ulong = 0x80084107;
-pub const AUDITPIPE_SET_PRESELECT_MODE: c_ulong = 0x8004410f;
-pub const AUDITPIPE_SET_PRESELECT_NAFLAGS: c_ulong = 0x80084109;
 pub const AUDITPIPE_SET_QLIMIT: c_ulong = 0x80044103;
+pub const AUDITPIPE_GET_QLIMIT_MIN: c_ulong = 0x40044104;
+pub const AUDITPIPE_GET_QLIMIT_MAX: c_ulong = 0x40044105;
+pub const AUDITPIPE_GET_PRESELECT_FLAGS: c_ulong = 0x40084106;
+pub const AUDITPIPE_SET_PRESELECT_FLAGS: c_ulong = 0x80084107;
+pub const AUDITPIPE_GET_PRESELECT_NAFLAGS: c_ulong = 0x40084108;
+pub const AUDITPIPE_SET_PRESELECT_NAFLAGS: c_ulong = 0x80084109;
+pub const AUDITPIPE_GET_PRESELECT_AUID: c_ulong = 0x400c410a;
+pub const AUDITPIPE_SET_PRESELECT_AUID: c_ulong = 0x800c410b;
+pub const AUDITPIPE_DELETE_PRESELECT_AUID: c_ulong = 0x8004410c;
+pub const AUDITPIPE_FLUSH_PRESELECT_AUID: c_ulong = 0x2000410d;
+pub const AUDITPIPE_GET_PRESELECT_MODE: c_ulong = 0x4004410e;
+pub const AUDITPIPE_SET_PRESELECT_MODE: c_ulong = 0x8004410f;
+pub const AUDITPIPE_FLUSH: c_ulong = 0x20004110;
+pub const AUDITPIPE_GET_MAXAUDITDATA: c_ulong = 0x40044111;
+pub const AUDITPIPE_GET_INSERTS: c_ulong = 0x40084164;
+pub const AUDITPIPE_GET_READS: c_ulong = 0x40084165;
+pub const AUDITPIPE_GET_DROPS: c_ulong = 0x40084166;
+pub const AUDITPIPE_GET_TRUNCATES: c_ulong = 0x40084167;
+
 
 // auditpipe, /etc/security/audit_class
-pub const ACLASS_INVALID_CLASS: c_ulong = 0x00000000; //no:invalid class
-pub const ACLASS_FILE_READ: c_ulong = 0x00000001; //fr:file read
-pub const ACLASS_FILE_WRITE: c_ulong = 0x00000002; //fw:file write
-pub const ACLASS_FILE_ATTR_ACCESS: c_ulong = 0x00000004; //fa:file attribute access
-pub const ACLASS_FILE_ADDR_MODIFY: c_ulong = 0x00000008; //fm:file attribute modify
-pub const ACLASS_FILE_CREATE: c_ulong = 0x00000010; //fc:file create
-pub const ACLASS_FILE_DELETE: c_ulong = 0x00000020; //fd:file delete
-pub const ACLASS_FILE_CLOSE: c_ulong = 0x00000040; //cl:file close
-pub const ACLASS_PROCESS: c_ulong = 0x00000080; //pc:process
-pub const ACLASS_NETWORK: c_ulong = 0x00000100; //nt:network
-pub const ACLASS_IPC: c_ulong = 0x00000200; //ip:ipc
-pub const ACLASS_NON_ATTRIB: c_ulong = 0x00000400; //na:non attributable
-pub const ACLASS_ADMINISTRATIVE: c_ulong = 0x00000800; //ad:administrative
-pub const ACLASS_LOGIN_LOGOUT: c_ulong = 0x00001000; //lo:login_logout
-pub const ACLASS_AUTH: c_ulong = 0x00002000; //aa:authentication and authorization
-pub const ACLASS_APPLICATUON: c_ulong = 0x00004000; //ap:application
-pub const SUB_IOCTL: c_ulong = 0x20000000; //io:ioctl
-pub const SUB_EXEC: c_ulong = 0x40000000; //ex:exec
-pub const SUB_MISC: c_ulong = 0x80000000; //ot:miscellaneous
-pub const SUB_ALL: c_ulong = 0xffffffff; //all:all flags set
+pub const ACLASS_INVALID_CLASS: c_ulong = 0x00000000;
+pub const ACLASS_FILE_READ: c_ulong = 0x00000001;
+pub const ACLASS_FILE_WRITE: c_ulong = 0x00000002;
+pub const ACLASS_FILE_ATTR_ACCESS: c_ulong = 0x00000004;
+pub const ACLASS_FILE_ADDR_MODIFY: c_ulong = 0x00000008;
+pub const ACLASS_FILE_CREATE: c_ulong = 0x00000010;
+pub const ACLASS_FILE_DELETE: c_ulong = 0x00000020;
+pub const ACLASS_FILE_CLOSE: c_ulong = 0x00000040;
+pub const ACLASS_PROCESS: c_ulong = 0x00000080;
+pub const ACLASS_NETWORK: c_ulong = 0x00000100;
+pub const ACLASS_IPC: c_ulong = 0x00000200;
+pub const ACLASS_NON_ATTRIB: c_ulong = 0x00000400;
+pub const ACLASS_ADMINISTRATIVE: c_ulong = 0x00000800;
+pub const ACLASS_LOGIN_LOGOUT: c_ulong = 0x00001000;
+pub const ACLASS_AUTH: c_ulong = 0x00002000;
+pub const ACLASS_APPLICATUON: c_ulong = 0x00004000;
+pub const ACLASS_IOCTL: c_ulong = 0x20000000;
+pub const ACLASS_EXEC: c_ulong = 0x40000000;
+pub const ACLASS_MISC: c_ulong = 0x80000000;
+pub const ACLASS_ALL: c_ulong = 0xffffffff;
 
 
 extern "C" {
