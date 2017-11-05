@@ -25,7 +25,7 @@ mod os;
 pub fn tiocexcl(fd: RawFd) -> io::Result<()> {
     match unsafe { ioctl(fd, TIOCEXCL) } {
         0 => Ok(()),
-        _ => Err(io::Error::last_os_error())
+        _ => Err(io::Error::last_os_error()),
     }
 }
 
@@ -33,7 +33,7 @@ pub fn tiocexcl(fd: RawFd) -> io::Result<()> {
 pub fn tiocnxcl(fd: RawFd) -> io::Result<()> {
     match unsafe { ioctl(fd, TIOCNXCL) } {
         0 => Ok(()),
-        _ => Err(io::Error::last_os_error())
+        _ => Err(io::Error::last_os_error()),
     }
 }
 
@@ -43,7 +43,7 @@ pub fn tiocmget(fd: RawFd) -> io::Result<c_int> {
 
     match unsafe { ioctl(fd, TIOCMGET, &mut bits) } {
         0 => Ok(bits),
-        _ => Err(io::Error::last_os_error())
+        _ => Err(io::Error::last_os_error()),
     }
 }
 
@@ -51,7 +51,7 @@ pub fn tiocmget(fd: RawFd) -> io::Result<c_int> {
 pub fn tiocmset(fd: RawFd, bits: c_int) -> io::Result<()> {
     match unsafe { ioctl(fd, TIOCMSET, &bits) } {
         0 => Ok(()),
-        _ => Err(io::Error::last_os_error())
+        _ => Err(io::Error::last_os_error()),
     }
 }
 
@@ -59,7 +59,7 @@ pub fn tiocmset(fd: RawFd, bits: c_int) -> io::Result<()> {
 pub fn tiocmbis(fd: RawFd, bits: c_int) -> io::Result<()> {
     match unsafe { ioctl(fd, TIOCMBIS, &bits) } {
         0 => Ok(()),
-        _ => Err(io::Error::last_os_error())
+        _ => Err(io::Error::last_os_error()),
     }
 }
 
@@ -67,7 +67,7 @@ pub fn tiocmbis(fd: RawFd, bits: c_int) -> io::Result<()> {
 pub fn tiocmbic(fd: RawFd, bits: c_int) -> io::Result<()> {
     match unsafe { ioctl(fd, TIOCMBIC, &bits) } {
         0 => Ok(()),
-        _ => Err(io::Error::last_os_error())
+        _ => Err(io::Error::last_os_error()),
     }
 }
 
@@ -75,7 +75,7 @@ pub fn tiocmbic(fd: RawFd, bits: c_int) -> io::Result<()> {
 pub fn ap_get_qlimit_max(fd: RawFd, bits: &mut c_int) -> io::Result<()> {
     match unsafe { ioctl(fd, AUDITPIPE_GET_QLIMIT_MAX, bits as *mut c_int) } {
         0 => Ok(()),
-        _ => Err(io::Error::last_os_error())
+        _ => Err(io::Error::last_os_error()),
     }
 }
 
@@ -83,16 +83,14 @@ pub fn ap_get_qlimit_max(fd: RawFd, bits: &mut c_int) -> io::Result<()> {
 pub fn ap_get_drops(fd: RawFd, bits: &mut u64) -> io::Result<()> {
     match unsafe { ioctl(fd, AUDITPIPE_GET_DROPS, bits as *mut u64) } {
         0 => Ok(()),
-        _ => Err(io::Error::last_os_error())
+        _ => Err(io::Error::last_os_error()),
     }
 }
 
-/// Get auditpipe truncate count
 /// Get auditpipe truncate count
 pub fn ap_get_truncates(fd: RawFd, bits: &mut u64) -> io::Result<()> {
     match unsafe { ioctl(fd, AUDITPIPE_GET_TRUNCATES, bits as *mut u64) } {
         0 => Ok(()),
-        _ => Err(io::Error::last_os_error())
+        _ => Err(io::Error::last_os_error()),
     }
 }
-
