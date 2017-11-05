@@ -88,6 +88,7 @@ pub fn ap_get_drops(fd: RawFd, bits: &mut u64) -> io::Result<()> {
 }
 
 /// Get auditpipe truncate count
+/// Get auditpipe truncate count
 pub fn ap_get_truncates(fd: RawFd, bits: &mut u64) -> io::Result<()> {
     match unsafe { ioctl(fd, AUDITPIPE_GET_TRUNCATES, bits as *mut u64) } {
         0 => Ok(()),
