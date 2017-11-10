@@ -72,8 +72,8 @@ pub fn tiocmbic(fd: RawFd, bits: c_int) -> io::Result<()> {
 }
 
 /// Get audit queue length
-pub fn ap_get_qlimit_max(fd: RawFd) -> io::Result<i32> {
-    let result = 0;
+pub fn ap_get_qlimit_max(fd: RawFd) -> io::Result<u32> {
+    let result:u32 = 0;
     match unsafe { ioctl(fd, AUDITPIPE_GET_QLIMIT_MAX, &result) } {
         0 => Ok((result)),
         _ => Err(io::Error::last_os_error()),
@@ -81,17 +81,19 @@ pub fn ap_get_qlimit_max(fd: RawFd) -> io::Result<i32> {
 }
 
 /// Get auditpipe drop count
-pub fn ap_get_drops(fd: RawFd, bits: &mut u64) -> io::Result<()> {
-    match unsafe { ioctl(fd, AUDITPIPE_GET_DROPS, bits as *mut u64) } {
-        0 => Ok(()),
+pub fn ap_get_drops(fd: RawFd) -> io::Result<(u64)> {
+    let result:u64 = 0;
+    match unsafe { ioctl(fd, AUDITPIPE_GET_DROPS, &result) } {
+        0 => Ok((result)),
         _ => Err(io::Error::last_os_error()),
     }
 }
 
 /// Get auditpipe truncate count
-pub fn ap_get_truncates(fd: RawFd, bits: &mut u64) -> io::Result<()> {
-    match unsafe { ioctl(fd, AUDITPIPE_GET_TRUNCATES, bits as *mut u64) } {
-        0 => Ok(()),
+pub fn ap_get_truncates(fd: RawFd) -> io::Result<(u64)> {
+    let result:u64 = 0;
+    match unsafe { ioctl(fd, AUDITPIPE_GET_TRUNCATES, &result) } {
+        0 => Ok((result)),
         _ => Err(io::Error::last_os_error()),
     }
 }
