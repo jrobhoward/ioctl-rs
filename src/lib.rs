@@ -167,3 +167,11 @@ pub fn ap_get_truncates(fd: RawFd) -> io::Result<(u64)> {
         _ => Err(io::Error::last_os_error()),
     }
 }
+
+/// Set the auditpipe preselect flags
+pub fn ap_set_preselect_flags(fd: RawFd, mask: u32) -> io::Result<()> {
+    match unsafe { ioctl(fd, AUDITPIPE_SET_PRESELECT_FLAGS, &mask) } {
+        0 => Ok(()),
+        _ => Err(io::Error::last_os_error()),
+    }
+}
