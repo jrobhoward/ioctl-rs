@@ -168,9 +168,26 @@ pub fn ap_get_truncates(fd: RawFd) -> io::Result<(u64)> {
     }
 }
 
+/// Set the auditpipe preselect mode
+pub fn ap_set_preselect_mode(fd: RawFd) -> io::Result<()> {
+    let preselect_mode: i32 = AUDITPIPE_PRESELECT_MODE_LOCAL;
+    match unsafe { ioctl(fd, AUDITPIPE_SET_PRESELECT_MODE, &preselect_mode) } {
+        0 => Ok(()),
+        _ => Err(io::Error::last_os_error()),
+    }
+}
+
 /// Set the auditpipe preselect flags
 pub fn ap_set_preselect_flags(fd: RawFd, mask: u32) -> io::Result<()> {
     match unsafe { ioctl(fd, AUDITPIPE_SET_PRESELECT_FLAGS, &mask) } {
+        0 => Ok(()),
+        _ => Err(io::Error::last_os_error()),
+    }
+}
+
+/// Set the nonattr auditpipe preselect flags
+pub fn ap_set_preselect_flags_na(fd: RawFd, mask: u32) -> io::Result<()> {
+    match unsafe { ioctl(fd, AUDITPIPE_SET_PRESELECT_NAFLAGS, &mask) } {
         0 => Ok(()),
         _ => Err(io::Error::last_os_error()),
     }
